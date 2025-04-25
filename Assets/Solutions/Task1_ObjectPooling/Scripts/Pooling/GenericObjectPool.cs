@@ -4,17 +4,23 @@ using UnityEngine;
 
 namespace ObjectPooling
 {
-    public class GenericObjectPool<T> : MonoBehaviour where T : Component
+    public class GenericObjectPool<T> where T : MonoBehaviour
     {
         private Queue<T> pool = new Queue<T>();
         private T prefab;
-        private Transform parent;
+        Transform parent;
+
+        public GenericObjectPool(T prefab, Transform parent)
+        {
+            this.prefab = prefab;
+            this.parent = parent;
+        }
 
         public void Prewarm(int count)
         {
             for (int i = 0; i < count; i++)
             {
-                T obj = Instantiate(prefab, parent);
+                T obj = Object.Instantiate(prefab, parent);
                 obj.gameObject.SetActive(false);
                 pool.Enqueue(obj);
             }
@@ -28,7 +34,9 @@ namespace ObjectPooling
         }
         public void Release(T obj)
         {
-
+            obj.gameObject.SetActive(false);
+            obj.transform.parent = parent;
+            pool.Enqueue(obj);
         }
     }
 }
