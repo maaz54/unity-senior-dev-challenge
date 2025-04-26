@@ -155,7 +155,7 @@ MonoBehaviour:
   spawnButton: {fileID: 1278936935}
   poolPrefab: {fileID: -5362906617052172578, guid: 4700c9f5ed1356649990d757af2e10f7, type: 3}
   holdTime: 2
-  spanwQuantity: 1000
+  spawnQuantity: 1000
 --- !u!4 &242171519
 Transform:
   m_ObjectHideFlags: 0

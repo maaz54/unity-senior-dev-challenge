@@ -12,7 +12,7 @@ namespace ObjectPooling
         [SerializeField] Button spawnButton;
         [SerializeField] MonoBehaviour poolPrefab;
         [SerializeField] float holdTime;
-        [SerializeField] int spanwQuantity;
+        [SerializeField] int spawnQuantity;
         GenericObjectPool<MonoBehaviour> objectPooler;
 
         private void Start()
@@ -42,7 +42,7 @@ namespace ObjectPooling
         private async Task SpawnAndRelease(float holdTime)
         {
 
-            for (int i = 0; i < spanwQuantity; i++)
+            for (int i = 0; i < spawnQuantity; i++)
             {
                 MonoBehaviour spawnObj = objectPooler.Get();
                 spawnObj.transform.position = UnityEngine.Random.insideUnitCircle * 5f;
