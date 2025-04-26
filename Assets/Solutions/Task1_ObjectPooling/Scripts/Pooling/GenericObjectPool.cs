@@ -20,18 +20,28 @@ namespace ObjectPooling
         {
             for (int i = 0; i < count; i++)
             {
-                T obj = Object.Instantiate(prefab, parent);
-                obj.gameObject.SetActive(false);
-                pool.Enqueue(obj);
+                ExpandPool();
             }
         }
 
         public T Get()
         {
+            if (pool.Count == 0)
+            {
+                ExpandPool();
+            }
+
             T obj = pool.Dequeue();
             obj.gameObject.SetActive(true);
             return obj;
         }
+        private void ExpandPool()
+        {
+            T obj = Object.Instantiate(prefab, parent);
+            obj.gameObject.SetActive(false);
+            pool.Enqueue(obj);
+        }
+
         public void Release(T obj)
         {
             obj.gameObject.SetActive(false);
