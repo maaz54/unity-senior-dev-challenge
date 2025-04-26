@@ -1,0 +1,16 @@
+{
+  "episodes": [
+    {
+      "episodeId": "1",
+      "chapters": [
+        {
+          "chapterId": "A",
+          "completionTrigger": "Collect 10 Stars",
+          "dialogues": [
+            {"speaker":"Dr","text":"…"}
+          ]
+        }
+      ]
+    }
+  ]
+}
