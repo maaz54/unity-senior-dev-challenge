@@ -37,13 +37,13 @@ namespace QuestNarration
 
         private void SetText()
         {
-            this.chapterNameText.text = chapterData.chapterId;
+            this.chapterNameText.text = "CHAPTER: " + chapterData.chapterId;
             this.completionTriggerText.text = chapterData.completionTrigger;
         }
 
         private void SetCompletionTriggerText()
         {
-            string updatedText = Regex.Replace(chapterData.completionTrigger, @"(\d+)",(chapterData.RequiredCount - simulateCount).ToString());
+            string updatedText = Regex.Replace(chapterData.completionTrigger, @"(\d+)", (chapterData.RequiredCount - simulateCount).ToString());
             this.completionTriggerText.text = updatedText;
         }
 

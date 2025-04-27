@@ -26,7 +26,7 @@ namespace QuestNarration
 
         private void SetText()
         {
-            episodeNameText.text = episode.episodeId;
+            episodeNameText.text = "EPISODE: " + episode.episodeId;
         }
 
         private void PopulateChapters(UIChapterItem uIChapterItemsPrefab)
@@ -38,7 +38,7 @@ namespace QuestNarration
                 chaptersUI.Add(Instantiate(uIChapterItemsPrefab, chaptersHolder));
                 chaptersUI[i].Initialize(episode.chapters[i]);
                 chaptersUI[i].OnSimulateAction += ChapterSimulate;
-                ChaptersDict.Add(episode.chapters[i],chaptersUI[i]);
+                ChaptersDict.Add(episode.chapters[i], chaptersUI[i]);
             }
         }
 
