@@ -11,7 +11,9 @@ namespace QuestNarration
     {
         [SerializeField] UIController uIController;
         EpisodeData episodeData;
-        event Action<ChapterData> OnChapterComplete;
+        public event Action<ChapterData> OnChapterComplete;
+
+        ChapterData currentChapter;
 
         private void Start()
         {
@@ -26,9 +28,9 @@ namespace QuestNarration
             {
                 for (int j = 0; j < episodeData.episodes[i].chapters.Count; j++)
                 {
-                    if(!episodeData.episodes[i].chapters[j].IsComplete)
+                    if (!episodeData.episodes[i].chapters[j].IsComplete)
                     {
-                        episodeData.episodes[i].chapters[j].RequiredCount = episodeData.episodes[i].chapters[j].completionTrigger.ParseNumber(); 
+                        episodeData.episodes[i].chapters[j].RequiredCount = episodeData.episodes[i].chapters[j].completionTrigger.ParseNumber();
                     }
                 }
             }
@@ -40,6 +42,7 @@ namespace QuestNarration
             {
                 uIController.InitializeUI(episodeData.episodes);
                 uIController.OnChapterSimulate += CheckTrigger;
+                OnChapterComplete += uIController.OnChapterComplete;
             }
         }
 
@@ -58,12 +61,20 @@ namespace QuestNarration
 
         public void CheckTrigger(ChapterData chapterData, int count)
         {
+            this.currentChapter = chapterData;
             CheckTrigger(chapterData.completionTrigger, count);
         }
 
         private void CheckTrigger(string action, int count)
         {
-
+            if (!currentChapter.IsComplete)
+            {
+                if (count >= currentChapter.RequiredCount)
+                {
+                    currentChapter.IsComplete = true;
+                    OnChapterComplete?.Invoke(currentChapter);
+                }
+            }
         }
     }
 }

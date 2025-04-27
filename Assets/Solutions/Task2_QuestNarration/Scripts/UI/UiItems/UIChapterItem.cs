@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using QuestNarration.Model;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace QuestNarration
         [SerializeField] Button simulateActionButton;
         [SerializeField] TextMeshProUGUI chapterNameText;
         [SerializeField] TextMeshProUGUI completionTriggerText;
+        [SerializeField] GameObject chapterCompletePanel;
         [SerializeField] ChapterData chapterData;
         [SerializeField] int simulateCount;
         public Action<ChapterData, int> OnSimulateAction;
@@ -27,7 +29,6 @@ namespace QuestNarration
 
         private void OnSimulateButton()
         {
-            // simulateActionButton.onClick.RemoveAllListeners();
             simulateCount++;
             OnSimulateAction?.Invoke(chapterData, simulateCount);
         }
@@ -36,6 +37,13 @@ namespace QuestNarration
         {
             this.chapterNameText.text = chapterData.chapterId;
             this.completionTriggerText.text = chapterData.completionTrigger;
+        }
+
+        public void OnChapterComplete()
+        {
+            simulateActionButton.onClick.RemoveAllListeners();
+            simulateActionButton.gameObject.SetActive(false);
+            chapterCompletePanel.SetActive(true);
         }
 
 

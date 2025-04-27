@@ -10,9 +10,10 @@ namespace QuestNarration
     public class UIEpisodeItem : MonoBehaviour
     {
         public Action<ChapterData, int> OnChapterSimulate;
+        public List<UIChapterItem> chaptersUI { private set; get; }
+        public Dictionary<ChapterData, UIChapterItem> ChaptersDict;
         [SerializeField] TextMeshProUGUI episodeNameText;
         [SerializeField] RectTransform chaptersHolder;
-        [SerializeField] List<UIChapterItem> chaptersUI;
         Episode episode;
 
 
@@ -25,11 +26,13 @@ namespace QuestNarration
         private void PopulateChapters(UIChapterItem uIChapterItemsPrefab)
         {
             chaptersUI = new();
+            ChaptersDict = new();
             for (int i = 0; i < episode.chapters.Count; i++)
             {
                 chaptersUI.Add(Instantiate(uIChapterItemsPrefab, chaptersHolder));
                 chaptersUI[i].Initialize(episode.chapters[i]);
                 chaptersUI[i].OnSimulateAction += ChapterSimulate;
+                ChaptersDict.Add(episode.chapters[i],chaptersUI[i]);
             }
         }
 
