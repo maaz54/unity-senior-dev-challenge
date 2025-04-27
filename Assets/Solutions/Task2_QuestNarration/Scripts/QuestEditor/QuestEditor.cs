@@ -5,16 +5,22 @@ using UnityEngine;
 
 namespace QuestNarration
 {
+    /// <summary>
+    /// Handles loading and saving data from JSON file.
+    /// </summary>
     public class QuestEditor : MonoBehaviour
     {
         public List<Episode> Episodes;
-        string path;
 
         private void Start()
         {
             LoadJsonData();
         }
 
+
+        /// <summary>
+        /// Loads data from a json file from Resources folder.
+        /// </summary>
         private void LoadJsonData()
         {
             TextAsset jsonData = Resources.Load<TextAsset>("Data");
@@ -28,6 +34,10 @@ namespace QuestNarration
             }
         }
 
+        /// <summary>
+        /// Saves the current list of episodes to a JSON file.
+        /// This method can be called through the Unity editor context menu.
+        /// </summary>
         [ContextMenu("SaveEpisodeData")]
         public void SaveEpisodeData()
         {
