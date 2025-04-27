@@ -8,29 +8,31 @@ namespace QuestNarration
 {
     public class QuestManager : MonoBehaviour
     {
-        public List<Episode> Episodes { get; private set; }
-
+        [SerializeField] UIController uIController;
+        EpisodeData episodeData;
         event Action<ChapterData> OnChapterComplete;
 
         private void Start()
         {
-            LoadData();
+            LoadJsonData();
+
+            if (episodeData != null)
+            {
+                uIController.InitializeUI(episodeData.episodes);
+            }
         }
 
-        private void LoadData()
+        private void LoadJsonData()
         {
             TextAsset jsonData = Resources.Load<TextAsset>("Data");
             if (jsonData != null)
             {
-                EpisodeData episodeData = JsonUtility.FromJson<EpisodeData>(jsonData.text);
-                Episodes = episodeData.episodes;
+                episodeData = JsonUtility.FromJson<EpisodeData>(jsonData.text);
             }
             else
             {
                 Debug.LogError("Quest Data not found!");
             }
         }
-
-
     }
 }
