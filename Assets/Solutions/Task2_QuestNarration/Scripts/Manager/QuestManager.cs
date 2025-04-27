@@ -8,22 +8,9 @@ namespace QuestNarration
 {
     public class QuestManager : MonoBehaviour
     {
-
-        public static QuestManager Instance { get; private set; }
-
         public List<Episode> Episodes { get; private set; }
 
         event Action<ChapterData> OnChapterComplete;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-        }
 
         private void Start()
         {
@@ -43,5 +30,7 @@ namespace QuestNarration
                 Debug.LogError("Quest Data not found!");
             }
         }
+
+
     }
 }
