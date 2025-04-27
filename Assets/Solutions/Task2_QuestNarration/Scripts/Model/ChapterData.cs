@@ -5,7 +5,7 @@ using UnityEngine;
 namespace QuestNarration.Model
 {
     [System.Serializable]
-    public class Chapter
+    public class ChapterData
     {
         public string chapterId;
         public string completionTrigger;

@@ -8,6 +8,6 @@ namespace QuestNarration.Model
     public class Episode
     {
         public string episodeId;
-        public List<Chapter> chapters;
+        public List<ChapterData> chapters;
     }
 }

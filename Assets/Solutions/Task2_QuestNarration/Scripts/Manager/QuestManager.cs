@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using QuestNarration.Model;
@@ -11,6 +12,8 @@ namespace QuestNarration
         public static QuestManager Instance { get; private set; }
 
         public List<Episode> Episodes { get; private set; }
+
+        event Action<ChapterData> OnChapterComplete;
 
         private void Awake()
         {
