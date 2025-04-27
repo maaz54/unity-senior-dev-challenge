@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QuestNarration.Extensions;
 using QuestNarration.Model;
 using UnityEngine;
 
@@ -15,10 +16,30 @@ namespace QuestNarration
         private void Start()
         {
             LoadJsonData();
+            SetUI();
+            SetupChapterSimulationCounts();
+        }
 
+        private void SetupChapterSimulationCounts()
+        {
+            for (int i = 0; i < episodeData.episodes.Count; i++)
+            {
+                for (int j = 0; j < episodeData.episodes[i].chapters.Count; j++)
+                {
+                    if(!episodeData.episodes[i].chapters[j].IsComplete)
+                    {
+                        episodeData.episodes[i].chapters[j].RequiredCount = episodeData.episodes[i].chapters[j].completionTrigger.ParseNumber(); 
+                    }
+                }
+            }
+        }
+
+        private void SetUI()
+        {
             if (episodeData != null)
             {
                 uIController.InitializeUI(episodeData.episodes);
+                uIController.OnChapterSimulate += CheckTrigger;
             }
         }
 
@@ -33,6 +54,16 @@ namespace QuestNarration
             {
                 Debug.LogError("Quest Data not found!");
             }
+        }
+
+        public void CheckTrigger(ChapterData chapterData, int count)
+        {
+            CheckTrigger(chapterData.completionTrigger, count);
+        }
+
+        private void CheckTrigger(string action, int count)
+        {
+
         }
     }
 }

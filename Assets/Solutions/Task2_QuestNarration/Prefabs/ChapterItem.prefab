@@ -572,12 +572,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e852b92f2360ccd4abb44b61ff6b1060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simulateActionButton: {fileID: 6347606292114809482}
   chapterNameText: {fileID: 8300796407120175}
   completionTriggerText: {fileID: 3962166638181432846}
   chapterData:
     chapterId: 
     completionTrigger: 
     dialogues: []
+    IsComplete: 0
+    RequiredCount: 0
+  simulateCount: 0
 --- !u!1 &5706055710871660882
 GameObject:
   m_ObjectHideFlags: 0

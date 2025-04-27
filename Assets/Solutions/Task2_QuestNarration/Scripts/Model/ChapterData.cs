@@ -10,5 +10,7 @@ namespace QuestNarration.Model
         public string chapterId;
         public string completionTrigger;
         public List<Dialogue> dialogues;
+        public bool IsComplete;
+        public int RequiredCount;
     }
 }
