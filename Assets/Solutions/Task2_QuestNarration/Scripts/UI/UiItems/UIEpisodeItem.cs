@@ -20,7 +20,13 @@ namespace QuestNarration
         public void Initialize(Episode episode, UIChapterItem uIChapterItemsPrefab)
         {
             this.episode = episode;
+            SetText();
             PopulateChapters(uIChapterItemsPrefab);
+        }
+
+        private void SetText()
+        {
+            episodeNameText.text = episode.episodeId;
         }
 
         private void PopulateChapters(UIChapterItem uIChapterItemsPrefab)

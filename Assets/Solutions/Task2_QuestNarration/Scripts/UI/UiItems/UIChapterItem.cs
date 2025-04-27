@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using QuestNarration.Model;
 using TMPro;
@@ -30,6 +31,7 @@ namespace QuestNarration
         private void OnSimulateButton()
         {
             simulateCount++;
+            SetCompletionTriggerText();
             OnSimulateAction?.Invoke(chapterData, simulateCount);
         }
 
@@ -37,6 +39,12 @@ namespace QuestNarration
         {
             this.chapterNameText.text = chapterData.chapterId;
             this.completionTriggerText.text = chapterData.completionTrigger;
+        }
+
+        private void SetCompletionTriggerText()
+        {
+            string updatedText = Regex.Replace(chapterData.completionTrigger, @"(\d+)",(chapterData.RequiredCount - simulateCount).ToString());
+            this.completionTriggerText.text = updatedText;
         }
 
         public void OnChapterComplete()

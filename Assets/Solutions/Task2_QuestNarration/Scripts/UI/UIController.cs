@@ -36,7 +36,6 @@ namespace QuestNarration
 
         public void OnChapterComplete(ChapterData chapterData)
         {
-            Debug.Log("Chapter Complete");
             if(chaptersDict.TryGetValue(chapterData, out UIChapterItem chapterItem))
             {
                 chapterItem.OnChapterComplete();
