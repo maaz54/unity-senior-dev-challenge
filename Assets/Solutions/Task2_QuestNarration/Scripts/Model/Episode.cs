@@ -7,7 +7,7 @@ namespace QuestNarration.Model
     [System.Serializable]
     public class Episode
     {
-        public int episodeId { get; set; }
-        public List<Chapter> chapters { get; set; }
+        public string episodeId;
+        public List<Chapter> chapters;
     }
 }

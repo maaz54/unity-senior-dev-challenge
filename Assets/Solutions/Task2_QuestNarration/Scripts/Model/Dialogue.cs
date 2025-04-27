@@ -7,7 +7,7 @@ namespace QuestNarration.Model
     [System.Serializable]
     public class Dialogue
     {
-        public string speaker { get; set; }
-        public string text { get; set; }
+        public string speaker; 
+        public string text;
     }
 }

@@ -6,6 +6,6 @@ namespace QuestNarration.Model
 {
     public class EpisodeData
     {
-        public List<Episode> episodes { get; set; }
+        public List<Episode> episodes;
     }
 }
