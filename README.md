@@ -13,3 +13,12 @@ Each task is organized under the *Assets\Solutions* folder with separate scenes 
 - It Spawns 1000 cube objects in a random circular pattern. Holds them in the scene for 2 seconds, then releases them back to the pool.
 - Everything runs through a generic object pooling system, so there will be zero GC allocation at runtime.
 - You can easily change the spawn quantity and hold time from the Inspector by adjusting the ObjectPoolController component.
+
+
+# Task 2 — JSON-Driven Quest & Narration System
+
+# How To Run
+
+- You’ll find the demo scene for this task here: Assets\Solutions\Task2_QuestNarration\Scenes\DemoScene.unity
+- Hit Play, Display UI Canvase Shows Episode Cards And Chapters Inside cards Where you scroll Cards and Chapters inside Episode Cards.
+- Press "SIMULATE ACTION" button Any chapter to Trigger and Complete chapter.
