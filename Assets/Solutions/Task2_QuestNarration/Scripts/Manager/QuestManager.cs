@@ -46,19 +46,6 @@ namespace QuestNarration
             }
         }
 
-        private void LoadJsonData()
-        {
-            TextAsset jsonData = Resources.Load<TextAsset>("Data");
-            if (jsonData != null)
-            {
-                episodeData = JsonUtility.FromJson<EpisodeData>(jsonData.text);
-            }
-            else
-            {
-                Debug.LogError("Quest Data not found!");
-            }
-        }
-
         public void CheckTrigger(ChapterData chapterData, int count)
         {
             this.currentChapter = chapterData;
@@ -74,6 +61,19 @@ namespace QuestNarration
                     currentChapter.IsComplete = true;
                     OnChapterComplete?.Invoke(currentChapter);
                 }
+            }
+        }
+
+        private void LoadJsonData()
+        {
+            TextAsset jsonData = Resources.Load<TextAsset>("Data");
+            if (jsonData != null)
+            {
+                episodeData = JsonUtility.FromJson<EpisodeData>(jsonData.text);
+            }
+            else
+            {
+                Debug.LogError("Quest Data not found!");
             }
         }
     }
